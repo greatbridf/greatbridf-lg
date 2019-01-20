@@ -1,2 +1,4 @@
 # lldb debuging cache
 *.dSYM/
+# vscode stuff
+.vscode/

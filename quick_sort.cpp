@@ -21,13 +21,13 @@ int main() {
 
 void quicksort(int* arr, int left, int right) {
   if (left >= right) return;
-  int i = left, j = right, base = arr[left];
+  int i = left, j = right, base = arr[left];  // 以最右元素为基准 base = arr[right]
   while (i < j) {
-    while (arr[j] >= base && i < j) --j;
-    while (arr[i] <= base && i < j) ++i;
+    while (arr[j] >= base && i < j) --j;      // 从基准数相反方向开始调换
+    while (arr[i] <= base && i < j) ++i;      // 这两行对调
     if (i < j) swap(arr[i], arr[j]);
   }
-  arr[left] = arr[i];
+  arr[left] = arr[i];                         // arr[right] = arr[i]
   arr[i] = base;
   quicksort(arr, left, i-1);
   quicksort(arr, i+1, right);

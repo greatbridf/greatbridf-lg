@@ -3,26 +3,22 @@
 using namespace std;
 
 int main() {
-  int n = 0, max = -1, min = 2147483647;
+  int n;
   cin >> n;
   int* arr = new int[n];
-  for (int i = 0; i < n; ++i) {
-    int tmp = 0;
-    cin >> tmp;
-    arr[i] = tmp;
-    if (tmp > max) max = tmp;
-    if (tmp < min) min = tmp;
+  cin >> arr[0];
+  int max = arr[0], min = arr[0];
+  for (int i = 1; i < n; ++i) {
+    cin >> arr[i];
+    if (arr[i] > max) max = arr[i];
+    if (arr[i] < min) min = arr[i];
   }
-  int* sorted = new int[max - min + 1];
-  for (int i = 0; i < n; ++i) {
-    ++sorted[arr[i] - min];
-  }
-  for (int i = 0; i < (max - min + 1); ++i) {
-    while (sorted[i]--) {
-      cout << i + min << " ";
-    }
-  }
-  delete [] arr;
-  delete [] sorted;
+  int* result = new int[max - min + 1];
+  for (int i = 0; i < n; ++i)
+    ++result[arr[i]-min];
+  for (int i = 0; i < (max - min + 1); ++i)
+    while (result[i]--)
+      cout << i+min << " ";
+  delete [] result;
   return 0;
 }

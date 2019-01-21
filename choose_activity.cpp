@@ -1,33 +1,39 @@
-// 按开始时间将每个事件排序
-// 比较相同开始时间事件的结束时间
-// 取该事件的结束时间为i
-// 遍历数组，寻找开始时间>i的事件，重复上述操作
-
+// 按结束时间升序排列
+// 如下一个活动的开始时间>=现在的结束时间 选择
 #include <iostream>
 #include <algorithm>
+#include <cstdio>
+#include <memory.h>
 
 using namespace std;
 
-typedef struct activity {
-  int start, end;
-  bool valid = true;
-} activity;
+typedef struct ac {
+    int begin;
+    int end;
+} ac;
+
+bool cmp(ac a, ac b) {
+    return a.end < b.end;
+}
 
 int main() {
-  int n = 0;
-  cin >> n;
-  activity* arr = new activity[n];
-  for (int i = 0; i < n; ++i) {
-    cin >> arr[i].start >> arr[i].end;
-  }
-  sort(arr, arr+n, [](activity a, activity b) {
-    return a.start < b.start;
-  });
-  int end_time = 0;
-  for (int i = 0; i < n-1; ++i) {
-    if (arr[i].start == arr[i+1].start) {
-      // TODO ?
+    int n;
+    cin >> n;
+    ac* acs = new ac[n];
+    memset(acs, 0x00, sizeof(acs)*n);
+    for (int i = 0; i < n; ++i) {
+        scanf("%d%d", &acs[i].begin, &acs[i].end);
     }
-  }
-  return 0;
+    sort(acs, acs+n, cmp);
+    int end_time = acs[0].end;
+    int result = 1;
+    for (int i = 1; i < n; ++i) {
+        if (acs[i].begin >= end_time) {
+            end_time = acs[i].end;
+            ++result;
+        }
+    }
+    cout << result;
+    delete [] acs;
+    return 0;
 }

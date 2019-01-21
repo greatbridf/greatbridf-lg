@@ -1,3 +1,4 @@
+// std::string
 #include <iostream>
 #include <string>
 
@@ -39,8 +40,8 @@ void output(string str) {
 }
 
 // Or
-// 未处理开头多余的0
 #include <iostream>
+#include <cstdio>
 #include <cstring>
 
 using namespace std;
@@ -49,15 +50,21 @@ int main() {
 	char num[241];
 	int del;
 	cin >> num >> del;
-	for (char* i = num; *i != 0;) {
+	for (char* i = num; *i != 0; ) {
 		if (*i > *(i+1) && del != 0) {
 			for (char* j = i; *j != 0; ++j)
 				*j = *(j+1);
+			i = num;
 			--del;
 		} else ++i;
 	}
+	while (num[0] == '0' && strlen(num) != 1) {
+		for (int i = 0; i < strlen(num)+1; ++i) {
+			num[i] = num[i+1];
+		}
+	}
 	cout << num;
-  return 0;
+	return 0;
 }
 
 // 标准答案：

@@ -37,3 +37,56 @@ void output(string str) {
   }
   cout << str;
 }
+
+// Or
+// 未处理开头多余的0
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+int main() {
+	char num[241];
+	int del;
+	cin >> num >> del;
+	for (char* i = num; *i != 0;) {
+		if (*i > *(i+1) && del != 0) {
+			for (char* j = i; *j != 0; ++j)
+				*j = *(j+1);
+			--del;
+		} else ++i;
+	}
+	cout << num;
+  return 0;
+}
+
+// 标准答案：
+#include <cstdio>
+#include <cstring>
+
+using namespace std;
+
+int main() {
+	int s;
+	char str[250];
+	scanf("%s %d", str, &s);
+	int len = strlen(str);
+	for (; s!=0; len--, s--) {
+		int i = 0;
+		while (str[i] <= str[i+1]) i++;
+		while (i < len - 1) {
+			str[i] = str[i+1];
+			++i;
+		}
+	}
+	int flag = 1;
+	for (int i = 0; i < len; ++i) {
+		if (str[i] == '0' && i < len - 1 && flag == 1) continue;
+		else {
+			printf("%c", str[i]);
+			flag = 0;
+		}
+	}
+	return 0;
+}
+

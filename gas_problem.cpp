@@ -15,11 +15,11 @@ int main() {
   }
   int result = 0, gas_life = n;
   for (int i = 0; i < k+1; ++i) {
-    if (gas_life - station_distance[i] < 0) {
+    gas_life -= station_distance[i];
+    if (gas_life < 0) {
       ++result;
       gas_life = n - station_distance[i];
-    } else
-      gas_life -= station_distance[i];
+    }
   }
   cout << result;
   delete [] station_distance;

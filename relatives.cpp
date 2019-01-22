@@ -10,7 +10,12 @@ int set[500000];
 int person;
 
 bool find(int a) {
-    return set[a] == a ? a : find(set[a]);
+   /*
+    *  Improved find
+    *  Point target node directly
+    *  to root node
+    */
+    return set[a] == a ? a : set[a] = find(set[a]);
 }
 
 void awase(int a, int b) {

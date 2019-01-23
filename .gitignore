@@ -2,3 +2,6 @@
 *.dSYM/
 # vscode stuff
 .vscode/
+# macos stuff
+.DS_Store
+.Spotlight*

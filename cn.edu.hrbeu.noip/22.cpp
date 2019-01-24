@@ -9,18 +9,17 @@ int main() {
   long long t = 0;
   cin >> nHole >> nTimes;
   for (int i = 0; i < nTimes; ++i) {
-    if (t%nHole == 0) holes[nHole] = true;
-    else holes[t%nHole] = true;
+    holes[t%nHole==0 ? nHole : t%nHole] = true;
     t += (i+1);
   }
-  int flag = 0;
+  bool flag = false;
   for (int i = 1; i <= nHole; ++i) {
     if (!holes[i]) {
-      ++flag;
+      flag = true;
       cout << i << " ";
     }
   }
-  if (flag == 0)
+  if (!flag)
     cout << 0;
   cout << endl;
   return 0;

@@ -2,36 +2,40 @@
 
 using namespace std;
 
-bool visited[100000] = {false};
-int result[100000];
+int result[11];
 
-int m;
+int m, limit;
 
-int sum = 0;
+int sum = 0, result_count = 0;
 
-void split(int n) {
-  if (n == m && sum == m) {
+int debug = 0;
+
+void dfs(int fir) {
+  if (sum == m) {
     cout << result[0];
-    for (int i = 1; i < m; ++i)
+    for (int i = 1; i < result_count; ++i) {
       cout << "+" << result[i];
+    }
     cout << endl;
-    sum = 0;
     return;
-  } else {
-    for (int i = 1; i <= m; ++i) {
-      if (!visited[i-1]) {
-        visited[i-1] = true;
-        result[n-1] = i;
-        sum += i;
-        split(n+1);
-        visited[i-1] = false;
-      }
+  }
+  for (int i = 1; i < m; ++i) {
+    if (sum < m && (result_count == 0 || result[result_count-1] <= i)) {
+      result[result_count] = i;
+      sum += i;
+      ++result_count;
+      dfs(fir+1);
+      --result_count;
+      sum -= i;
+      result[result_count] = 0;
     }
   }
 }
 
 int main() {
-  cin >> m;
-  split(1);
+  while (cin >> m) {
+    limit = m / 2;
+    dfs(1);
+  }
   return 0;
 }

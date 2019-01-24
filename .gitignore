@@ -1,5 +1,6 @@
 # lldb debuging cache
 *.dSYM/
+*.out
 # vscode stuff
 .vscode/
 # macos stuff

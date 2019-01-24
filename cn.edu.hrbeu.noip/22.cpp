@@ -1,4 +1,3 @@
-// Unfinished
 #include <iostream>
 
 using namespace std;
@@ -6,7 +5,8 @@ using namespace std;
 bool holes[1000];
 
 int main() {
-  int nHole, nTimes, t = 0;
+  int nHole, nTimes;
+  long long t = 0;
   cin >> nHole >> nTimes;
   for (int i = 0; i < nTimes; ++i) {
     if (t%nHole == 0) holes[nHole] = true;

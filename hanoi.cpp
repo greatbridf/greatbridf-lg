@@ -1,8 +1,8 @@
 // http://www.cnblogs.com/antineutrino/p/3334540.html
 /*
-1. ÒÆ¶¯n-1¸öÅÌ×Ó A -> C -> B
-2. ÒÆ¶¯n¸öÅÌ×Ó A -> C
-3. ÒÆ¶¯n-1¸öÅÌ×Ó B -> A -> C
+1. ç§»åŠ¨n-1ä¸ªç›˜å­ A -> C -> B
+2. ç§»åŠ¨nä¸ªç›˜å­ A -> C
+3. ç§»åŠ¨n-1ä¸ªç›˜å­ B -> A -> C
 */
 #include <iostream>
 #include <cstdio>
@@ -11,18 +11,18 @@ using namespace std;
 
 long long step = 1;
 
-// n: µÚn¸öÅÌ×Ó£¨´ÓÉÏÖÁÏÂ£© a: Ô­Öù×Ó b: ¹ý³ÌÖù×Ó c: Ä¿±êÖù×Ó 
+// n: ç¬¬nä¸ªç›˜å­ï¼ˆä»Žä¸Šè‡³ä¸‹ï¼‰ a: åŽŸæŸ±å­ b: è¿‡ç¨‹æŸ±å­ c: ç›®æ ‡æŸ±å­
 void hanoi(int n, char a, char b, char c) {
-	if (n == 0) return;
-	hanoi(n-1, a, c, b);		// Ö±µ½×î¶¥¶ËÖù×Ó 
-	printf("STEP%lld-%d:%c-->%c\n", step++, n, a, c);	// A ---C--->B
-	hanoi(n-1, b, a, c);		// B ---A--->C
+  if (n == 0) return;
+  hanoi(n-1, a, c, b);		// ç›´åˆ°æœ€é¡¶ç«¯æŸ±å­
+  printf("STEP%lld-%d:%c-->%c\n", step++, n, a, c);	// A ---C--->B
+  hanoi(n-1, b, a, c);		// B ---A--->C
 }
 
 int main() {
-	int n;
-	cin >> n;
-	hanoi(n, 'A', 'B', 'C');
-	return 0; 
-} 
- 
+  int n;
+  cin >> n;
+  hanoi(n, 'A', 'B', 'C');
+  return 0;
+}
+

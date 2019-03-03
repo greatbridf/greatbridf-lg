@@ -9,24 +9,12 @@ bool flag = false;
 
 bool visited[10] = {false};
 
-bool judge(int n) {
-  bool tmp[10] = {false};
-  if (n % a != 0) return false;
-  int r = n/a;
-  r *= (a+1000*b+1000000*c);
-  while (r != 0) {
-    if (r%10 == 0 or tmp[r%10] == true)
-      return false;
-    tmp[r%10] = true;
-    r /= 10;
-  }
-  return true;
-}
+int arr[9];
 
 void dfs(int n) {
-  if (n > 100) {
-    if (n/a*c < 1000 and judge(n)) {
-      cout << n << ' ' << n/a*b << ' ' << n/a*c << endl;
+  if (n == 9) {
+    if ((100*arr[0]+10*arr[1]+arr[2])*a == (100*arr[3]+10*arr[4]+arr[5])*b and (100*arr[0]+10*arr[1]+arr[2])*a == (100*arr[6]+10*arr[7]+arr[8])*c) {
+      cout << arr[0] << arr[1] << arr[2] << ' ' << arr[3] << arr[4] << arr[5] << ' ' << arr[6] << arr[7] << arr[8] << endl;
       flag = true;
     }
     return;
@@ -34,7 +22,8 @@ void dfs(int n) {
   for (int i = 1; i < 10; ++i) {
     if (not visited[i]) {
       visited[i] = true;
-      dfs(n*10+i);
+      arr[n] = i;
+      dfs(n+1);
       visited[i] = false;
     }
   }
@@ -42,6 +31,10 @@ void dfs(int n) {
 
 int main() {
   cin >> a >> b >> c;
+  int tmp = a*b*c;
+  a = tmp / a;
+  b = tmp / b;
+  c = tmp / c;
   dfs(0);
   if (not flag)
     cout << "No!!!";

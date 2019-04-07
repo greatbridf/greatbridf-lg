@@ -6,7 +6,6 @@
 using namespace std;
 
 bool map[9][9];
-bool heng[9];
 bool zong[9];
 
 int result = 0;
@@ -17,11 +16,9 @@ void dfs(int n, int k, int curr) {
   }
   for (int i = curr; i <= n; ++i) {
     for (int j = 1; j <= n; ++j) {
-      if (map[i][j] && !heng[i] && !zong[j]) {
-        heng[i] = true;
+      if (map[i][j] && !zong[j]) {
         zong[j] = true;
-        dfs(n, k-1, curr+1);
-        heng[i] = false;
+        dfs(n, k-1, i+1);  // Search from the next line
         zong[j] = false;
       }
     }

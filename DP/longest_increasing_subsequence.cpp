@@ -6,7 +6,7 @@ using namespace std;
 int *arr, *dp;
 
 int main() {
-  int n;
+  int n, max = -1;
   cin >> n;
   arr = new int[n];
   dp = new int[n];
@@ -17,15 +17,13 @@ int main() {
   for (int i = 0; i < n; ++i) {
     for (int j = 0; j < i; ++j) {
       if (arr[j] < arr[i]) {
-        dp[i] = max(dp[j], dp[i]);
+        dp[i] = dp[j] > dp[i] ? dp[j] : dp[i];
       }
     }
     ++dp[i];
+    max = max < dp[i] ? dp[i] : max;
   }
-  for (int i = 0; i < n; ++i) {
-    cout << dp[i] << ' ';
-  }
-  cout << endl;
+  cout << max << endl;
   delete [] arr;
   delete [] dp;
   return 0;
